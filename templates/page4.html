@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Page 3</title>
+    <meta charset="UTF-8">
+    <title>Emissions Calculators</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='index.css') }}">
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+</head>
+<body>
+    <div class="header">
+        <h1>Basic GHG Emissions Calculator</h1>
+        <button id="refreshButton" class="btn btn-danger" onclick="window.location.reload();">Clear All</button>
+    </div>
+    <div class="nav">
+        <div class="button-container">
+            <button id="navigateButton1" class="btn btn-primary" onclick="window.location.href='/';">Rig GHG Emissions Calculator</button>
+            <div class="tooltip">Rig Emissions Calculator</div>
+        </div>
+        <div class="button-container">
+            <button id="navigateButton2" class="btn btn-primary" onclick="window.location.href='page2';">Generator GHG Emissions Calculator</button>
+            <div class="tooltip">Generator Emissions Calculator</div>
+        </div>
+        <div class="button-container">
+            <button id="navigateButton3" class="btn btn-primary" onclick="window.location.href='page3';">Mobile Combustion GHG Emissions (Scope 1) Calculator</button>
+            <div class="tooltip">Scope1 and Co2 Emissions Calculator</div>
+        </div>
+        <div class="button-container">
+            <button id="navigateButton4" class="btn btn-primary" onclick="window.location.href='page4';">Transportation and Distribution GHG Emissions Calculator</button>
+            <div class="tooltip">Scope3 Cat 4&9 Emissions Calculator</div>
+        </div>
+        <div class="button-container">
+            <button id="navigateButton5" class="btn btn-primary" onclick="window.location.href='page5';">Business Travel and Employee Commuting GHG Emissions Calculator</button>
+            <div class="tooltip">Scope3 Cat 6&7  Emissions Calculator</div>
+        </div>
+    </div>
+    <div class="container">
+        <!-- Scope 1 Emissions Calculator Section -->
+        <h2 class="scope1p4-header">Upstream and Downstream Transportation and Distribution Emissions Calculator(Scope 3 Cat 4 & 9)</h2 class="scope1p4-header">
+        <div class="row mb-4">
+            <div class="col-md-6">
+                <h3>Upstream Transportation and Distribution Emissions Calculator(Scope 3 Category 4)</h3>
+                <table class="table" id="upstreamTable">
+                    <thead>
+                        <tr>
+                            <th>Vehicle Type</th>
+                            <th>Select Distance Unit</th>
+                            <th>Enter Distance</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="upstreamTableBody">
+                        <tr>
+                            <td>
+                                <select class="form-control" name="vehicle_type[]">
+                                    <option value="">Select Type</option>
+                                    <option value="Medium- and Heavy-Duty Truck">Medium- and Heavy-Duty Truck</option>
+                                    <option value="Passenger Car">Passenger Car</option>
+                                    <option value="Light-Duty Truck">Light-Duty Truck</option>
+                                </select>
+                            </td>
+                            <td>
+                                <select class="form-control" name="distance_unit[]">
+                                    <option value="">Select Type</option>
+                                    <option value="km">KM</option>
+                                    <option value="miles">Miles</option>
+                                </select>
+                            </td>
+                            <td>
+                                <input type="number" class="form-control" name="distance[]" min="0">
+                            </td>
+                            <td>
+                                <button type="button" class="btn btn-success" onclick="addRow(this)">+</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <!-- <button type="button" class="btn btn-primary col-sm" onclick="submitScopeForm('upstream')">Calculate Emissions</button> -->
+            </div>
+            <div class="col-md-6">
+                <div id="results" class="mt-3"></div>
+            </div>
+            <div class="col-md-6">
+                &nbsp;
+                <h3>Downstream Transportation and Distribution Emissions Calculator(Scope 3 Category 9)</h3>
+                <table class="table" id="downstreamTable">
+                    <thead>
+                        <tr>
+                            <th>Vehicle Type</th>
+                            <th>Select Distance Unit</th>
+                            <th>Enter Distance</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="upstreamTableBody">
+                        <tr>
+                            <td>
+                                <select class="form-control" name="vehicle_type[]">
+                                    <option value="">Select Type</option>
+                                    <option value="Medium- and Heavy-Duty Truck-ds">Medium- and Heavy-Duty Truck</option>
+                                    <option value="Rail">Rail</option>
+                                    <option value="Waterborne Craft">Waterborne Craft</option>
+                                    <option value="Aircraft">Aircraft</option>
+                                </select>
+                            </td>
+                            <td>
+                                <select class="form-control" name="distance_unit[]">
+                                    <option value="">Select Type</option>
+                                    <option value="km">KM</option>
+                                    <option value="miles">Miles</option>
+                                </select>
+                            </td>
+                            <td>
+                                <input type="number" class="form-control" name="distance[]" min="0">
+                            </td>
+                            <td>
+                                <button type="button" class="btn btn-success" onclick="addRow(this)">+</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <button type="button" class="btn btn-primary col-sm" onclick="submitScopeForm('upstream')">Calculate Emissions</button>
+            </div>
+            <div class="col-md-6">
+                <div id="results" class="mt-3"></div>
+            </div>
+        </div>
+    </div>
+    <div class="methodology">
+        <h3>Methodology</h3>
+        <textarea class="form-control" rows="5" cols="1" placeholder="*Note: 
+        CO2e : Carbon dioxide Equivalent
+        CO2: Carbon dioxide
+        CH4 : Methane
+        N2O: Nitrus Oxide
+        "></textarea>    
+    </div>
+    <script src="{{ url_for('static', filename='index.js') }}"></script>
+</body>
+</html>
